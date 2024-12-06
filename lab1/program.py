@@ -1,19 +1,16 @@
-import pandas as pd
 import re
+import pandas as pd
 
 def extract_first_name(full_name):
     match = re.search(r'\((.*?)\)', full_name)
 
     if match:
         return match.group(1).split()[0]
-    
+
     parts = full_name.split(',')
     name_part = parts[1].strip().split('. ')[1]
 
-    if ' ' in name_part:
-        return name_part.split()[0]
-    else:
-        return name_part
+    return name_part.split()[0]
 
 data = pd.read_csv("Титаник.csv")
 
